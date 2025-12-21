@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Bus {
+    int busNo;
+    char source[20];
+    char destination[20];
+    int seats;
+};
+
+void addBus(struct Bus b[], int *n) {
+    printf("Enter Bus Number: ");
+    scanf("%d", &b[*n].busNo);
+
+    printf("Enter Source: ");
+    scanf("%s", b[*n].source);
+
+    printf("Enter Destination: ");
+    scanf("%s", b[*n].destination);
+
+    printf("Enter Total Seats: ");
+    scanf("%d", &b[*n].seats);
+
+    (*n)++;
+    printf("Bus Added Successfully\n");
+}
+
+void displayBus(struct Bus b[], int n) {
+    if (n == 0) {
+        printf("No Bus Records Available\n");
+        return;
+    }
+
+    printf("\nBusNo  Source  Destination  Seats\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d     %s     %s        %d\n",
+               b[i].busNo, b[i].source, b[i].destination, b[i].seats);
+    }
+}
+
+int main() {
+    struct Bus b[10];
+    int n = 0, choice;
+
+    do {
+        printf("\n--- Pragati Bus Management System ---\n");
+        printf("1. Add Bus\n");
+        printf("2. Display Bus Details\n");
+        printf("3. Exit\n");
+        printf("Enter Your Choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                addBus(b, &n);
+                break;
+            case 2:
+                displayBus(b, n);
+                break;
+            case 3:
+                printf("Program Terminated\n");
+                break;
+            default:
+                printf("Invalid Choice\n");
+        }
+    } while (choice != 3);
+
+    return 0;
+}
